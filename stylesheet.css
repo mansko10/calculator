@@ -55,7 +55,7 @@ body * {
     justify-content: center;
     flex-wrap: wrap-reverse;
     gap: 10px;
-    cursor: pointer;
+    
 }
 
 .button {
@@ -64,6 +64,7 @@ body * {
     font-size: 30px;
     flex: 0 1 90px;
     user-select: none;
+    cursor: pointer;
 
     display: flex;
     justify-content: center;
