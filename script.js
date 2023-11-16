@@ -75,3 +75,63 @@ buttons.addEventListener('click', e => {
         lower.textContent = lower.textContent.slice(0, -1);
     }
 })
+
+document.addEventListener('keydown', e => {
+    let buttonList = Array.from(buttons.querySelectorAll('button'));
+
+    buttonList.forEach(button => {
+        if (button.value === e.key) {
+            // console.log(button.textContent);
+
+            if (button.classList.contains('number') && lower.textContent === '0') {
+                lower.textContent = '';
+                lower.textContent += button.value;
+            } else if (button.classList.contains('number')) {
+                lower.textContent += button.value;
+            }
+
+            if (button.classList.contains('operator') && expression === '') {
+
+                expression += `${lower.textContent} ${button.value} `;
+                console.log(expression);
+                upper.textContent = expression.replace('*', '×').replace('/', '÷');
+                lower.textContent = '';
+        
+            } else if (button.classList.contains('operator') && expression !== '') {
+                expression += lower.textContent;
+        
+                //mind the spaces
+                expression = `${operate(expression)} ${button.value} `;
+        
+                upper.textContent = expression.replace('*', '×').replace('/', '÷');
+        
+                console.log(expression);
+        
+                lower.textContent = '';
+            }
+
+            if (button.classList.contains('equal') && expression !== '') {
+                expression += lower.textContent;
+                expression = `${expression} = `;
+        
+                lower.textContent = `${operate(expression)}`;
+        
+                console.log(expression);
+                upper.textContent = expression.replace('*', '×').replace('/', '÷');
+            }
+        
+            if (button.classList.contains('clear')) {
+                expression = '';
+                upper.textContent = '';
+                lower.textContent = '0';
+            }
+        
+            if (button.classList.contains('backspace')) {
+                lower.textContent = lower.textContent.slice(0, -1);
+            }
+
+
+        }
+    })
+
+})
