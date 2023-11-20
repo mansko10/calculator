@@ -28,12 +28,15 @@ const operate = (expression) => {
 let expression = ``;
 
 buttons.addEventListener('click', e => {
-    if (e.target.classList.contains('number') && lower.textContent === '0') {
+    if (e.target.classList.contains('number') && lower.textContent === '0' && e.target.value === '.') {
+        lower.textContent += e.target.value;
+    } else if (e.target.classList.contains('number') && lower.textContent === '0') {
         lower.textContent = '';
         lower.textContent += e.target.value;
     } else if (e.target.classList.contains('number')) {
         lower.textContent += e.target.value;
     }
+
 
     if (e.target.classList.contains('operator') && expression === '') {
 
@@ -85,9 +88,9 @@ document.addEventListener('keydown', e => {
 
     buttonList.forEach(button => {
         if (button.value === e.key) {
-            // console.log(button.textContent);
-
-            if (button.classList.contains('number') && lower.textContent === '0') {
+            if (button.classList.contains('number') && lower.textContent === '0' && button.value === '.') {
+                lower.textContent += button.value;
+            } else if (button.classList.contains('number') && lower.textContent === '0') {
                 lower.textContent = '';
                 lower.textContent += button.value;
             } else if (button.classList.contains('number')) {
