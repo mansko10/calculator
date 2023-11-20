@@ -74,6 +74,10 @@ buttons.addEventListener('click', e => {
     if (e.target.classList.contains('backspace')) {
         lower.textContent = lower.textContent.slice(0, -1);
     }
+
+    if (lower.textContent === '') {
+        lower.textContent = '0';
+    }
 })
 
 document.addEventListener('keydown', e => {
@@ -129,8 +133,10 @@ document.addEventListener('keydown', e => {
             if (button.classList.contains('backspace')) {
                 lower.textContent = lower.textContent.slice(0, -1);
             }
+        }
 
-
+        if (lower.textContent === '') {
+            lower.textContent = '0';
         }
     })
 
